@@ -41,7 +41,12 @@
         </div>
       </div>
     </nav>
-    <main class="mt-28 flex justify-center items-center">
+    <main class="mt-28 flex flex-col justify-center items-center">
+      <div>
+        <% flash.each do |k ,v| %>
+          <%= render partial: 'shared/flashes', locals: { key: k, value: v } %>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
   </body>

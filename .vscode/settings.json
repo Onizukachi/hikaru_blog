@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/.DS_Store": false,
+        "**/.git": false,
+        "**/.hg": false,
+        "**/.ruby-lsp": false,
+        "**/.svn": false,
+        "**/CVS": false,
+        "**/Thumbs.db": false
+    },
+    "search.exclude": {
+        "**/.ruby-lsp": false,
+        "**/*.code-search": false,
+        "**/bower_components": false,
+        "**/node_modules": false
+    },
+    "search.useIgnoreFiles": false
+}
