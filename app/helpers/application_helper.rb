@@ -23,6 +23,6 @@ module ApplicationHelper
   end
 
   def currently_at(current_page = '')
-    render 'shared/menu', current_page:
+    render partial: 'shared/menu', locals: { current_page: }
   end
 end
