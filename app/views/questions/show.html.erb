@@ -1,3 +1,6 @@
+<%= provide :page_title, 'Show Question' %>
+<%= currently_at 'Questions' %>
+
 <div class='mb-6 w-1/2'>
   <h1 class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-2'>
     Show Question
@@ -13,7 +16,7 @@
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
       }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
-  </div>
+    </div>
 
     <div class="inline-flex items-center justify-center w-full">
       <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded">
@@ -26,28 +29,30 @@
 
     <%= render 'shared/errors', object: @answer %>
 
-    <%= form_with model: [@question, @answer], class: 'mt-4' do |f| %>
-      <div class='mb-2'>
-        <%= f.text_area :body, placeholder: 'Answer body', class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
-      </div>
-
-      <%= f.submit 'Create Answer!', class: 'cursor-pointer mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
-
-    <% end %>
-
-    <h2>Answers</h2>
-
     <% @answers.each do |answer| %>
-      <p class="mb-3 font-normal text-gray-500 text-xs">
-        <time datetime="<%= answer.formatted_created_at %>">
-          <%= answer.formatted_created_at %>
-        </time>
-      </p>
+      <div class="bg-gray-100 rounded-lg p-6 mb-2">
+        <div class="flex flex-col space-y-4">
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-bold"> <%= answer.owner %></h3>
+            <p class="text-gray-700 text-sm mb-2">Posted on <%= answer.formatted_created_at %></p>
+            <p class="text-gray-700"><%= answer.body %></p>
 
-      <p>
-        <%= answer.body %>
-      </p>
-
-      <%= link_to 'Delete answer', question_answer_path(@question, answer), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+            <div class="inline-flex rounded-md shadow-sm mt-2" role="group">
+              <%= link_to 'Edit answer', edit_question_answer_path(@question, answer),
+                          class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-l-lg bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium' %>
+              <%= link_to 'Delete answer', question_answer_path(@question, answer), method: :delete, data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
+
+    <div class='my-4'>
+      <%= render 'answers/form' %>
+    </div>
+  </div>
 </div>
+

@@ -1,12 +1,12 @@
-<%= provide :page_title, 'Edit Question'  %>
-<%= currently_at 'Questions' %>
+<%= provide :page_title, 'Edit Answer'  %>
+<%= currently_at 'Answers' %>
 
 <div class='mb-6 w-1/2'>
   <h1 class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-8'>
-    Edit question
+    Edit answer
   </h1>
 
-  <%= render 'shared/errors', object: @question  %>
+  <%= render 'shared/errors', object: @answer  %>
 
   <div class="p-6 border-2 border-sky-600 rounded-md border-solid shadow-xl">
     <%= render 'form' %>
