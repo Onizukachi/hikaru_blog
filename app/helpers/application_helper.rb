@@ -25,4 +25,12 @@ module ApplicationHelper
   def currently_at(current_page = '')
     render partial: 'shared/menu', locals: { current_page: }
   end
+
+  def flash_color(key, type, opacity)
+    if key == 'success'
+      "#{type}-green-#{opacity}"
+    else
+      "#{type}-red-#{opacity}"
+    end
+  end
 end

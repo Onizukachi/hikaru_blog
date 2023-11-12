@@ -8,7 +8,7 @@
 
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow mt-8">
     <h5 class="mb-5 text-2xl font-bold text-center tracking-tight text-gray-900"><%= @question.title %></h5>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= @question.body %></p>
+    <div class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= sanitize(@question.body) %></div>
     <div class="inline-flex rounded-md shadow-sm" role="group">
       <%= link_to 'Edit', edit_question_path(@question),
                   class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-l-lg bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium' %>
@@ -29,26 +29,7 @@
 
     <%= render 'shared/errors', object: @answer %>
 
-    <% @answers.each do |answer| %>
-      <div class="bg-gray-100 rounded-lg p-6 mb-2">
-        <div class="flex flex-col space-y-4">
-          <div class="bg-white p-4 rounded-lg shadow-md">
-            <h3 class="text-lg font-bold"> <%= answer.owner %></h3>
-            <p class="text-gray-700 text-sm mb-2">Posted on <%= answer.formatted_created_at %></p>
-            <p class="text-gray-700"><%= answer.body %></p>
-
-            <div class="inline-flex rounded-md shadow-sm mt-2" role="group">
-              <%= link_to 'Edit answer', edit_question_answer_path(@question, answer),
-                          class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-l-lg bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium' %>
-              <%= link_to 'Delete answer', question_answer_path(@question, answer), method: :delete, data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render @answers, question: @question %>
 
     <div class='my-4'>
       <%= render 'answers/form' %>

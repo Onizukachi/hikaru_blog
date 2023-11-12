@@ -6,14 +6,19 @@
     Questions
   </h1>
 
+  <div>
+    <%= paginate @questions %>
+  </div>
+  
+
   <% @questions.each do |question| %>
     <div class="p-6 mt-2 bg-white border border-gray-200 rounded-lg shadow">
       <h5 class="text-2xl font-semibold tracking-tight text-gray-900 mb-4">
         <%= link_to question.title, question_path(question) %>
       </h5>
-      <p class="mb-3 font-normal text-gray-500">
-        <%= question.body %>
-      </p>
+      <div class="mb-3 font-normal text-gray-500">
+        <%= truncate(strip_tags(question.body), length: 150, omission: '... (continued)') %>
+      </div>
       <p class="mb-3 font-normal text-gray-500 text-xs">
         <time datetime="<%= question.formatted_created_at %>">
           <%= question.formatted_created_at %>
@@ -29,4 +34,8 @@
       </div>
     </div>
   <% end %>
+
+  <div class='mt-4'>
+    <%= paginate @questions %>
+  </div>
 </div>
