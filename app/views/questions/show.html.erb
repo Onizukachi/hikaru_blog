@@ -31,6 +31,11 @@
 
     <%= render @answers, question: @question %>
 
+    <div>
+      <%= pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
+    </div>
+  
+
     <div class='my-4'>
       <%= render 'answers/form' %>
     </div>

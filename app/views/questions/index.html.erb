@@ -2,15 +2,15 @@
 <%= currently_at 'Questions' %>
 
 <div class='mb-6 w-1/2'>
-  <h1 class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-2'>
-    Questions
-  </h1>
+  <div class='mb-4'>
+    <%= link_to 'New question', new_question_path,
+                class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-lg rounded-lg text-xl px-5 py-2.5' %>
+  </div>
 
   <div>
-    <%= paginate @questions %>
+    <%= pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
   </div>
   
-
   <% @questions.each do |question| %>
     <div class="p-6 mt-2 bg-white border border-gray-200 rounded-lg shadow">
       <h5 class="text-2xl font-semibold tracking-tight text-gray-900 mb-4">
@@ -36,6 +36,6 @@
   <% end %>
 
   <div class='mt-4'>
-    <%= paginate @questions %>
+    <%= pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
   </div>
 </div>

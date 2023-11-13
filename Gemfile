@@ -17,7 +17,7 @@ gem 'sidekiq'
 # Use pg as the database for Active Record
 gem 'pg'
 
-gem 'kaminari', '~>1.2'
+gem 'pagy'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
