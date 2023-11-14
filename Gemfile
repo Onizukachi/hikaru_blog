@@ -14,6 +14,10 @@ gem 'redis-rails'
 
 gem 'sidekiq'
 
+gem 'draper'
+
+gem 'valid_email2'
+
 # Use pg as the database for Active Record
 gem 'pg'
 

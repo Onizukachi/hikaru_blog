@@ -4,12 +4,15 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
-    @pagy, @questions = pagy(Question.order(created_at: :desc))
+    @pagy, @questions = pagy(Question.order(created_at: :desc), items: 15)
+    @questions = @questions.decorate
   end
 
   def show
+    @question = @question.decorate
     @answer = @question.answers.build
-    @pagy, @answers = pagy(@question.answers.order(created_at: :desc), items: 10)
+    @pagy, @answers = pagy(@question.answers.order(created_at: :desc), items: 5)
+    @answers = @answers.decorate
   end
 
   def new

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def pagination(obj)
+    pagy_nav(obj).html_safe if obj.pages > 1
+  end
+
   def full_title(page_title = '')
     base_title = 'HikaruBlog'
     if page_title.present?

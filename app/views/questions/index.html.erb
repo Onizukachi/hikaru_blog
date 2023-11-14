@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <%= pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
+    <%= pagination(@pagy) %>
   </div>
   
   <% @questions.each do |question| %>
@@ -36,6 +36,6 @@
   <% end %>
 
   <div class='mt-4'>
-    <%= pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
+    <%= pagination(@pagy) %>
   </div>
 </div>

@@ -27,14 +27,13 @@
       </div>
     </div>
 
-    <%= render 'shared/errors', object: @answer %>
-
     <%= render @answers, question: @question %>
 
     <div>
-      <%= pagy_nav(@pagy).html_safe if @pagy.pages > 1 %>
+      <%= pagination(@pagy) %>
     </div>
   
+    <%= render('shared/errors', object: @answer) %>
 
     <div class='my-4'>
       <%= render 'answers/form' %>

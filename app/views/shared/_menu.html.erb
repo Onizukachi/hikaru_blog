@@ -6,11 +6,27 @@
         <span class="self-center text-2xl font-semibold whitespace-nowrap">Hikaru Blog</span>
       <% end %>
       <div class="flex md:order-2">
-
         <% if user_signed_in? %>
-          <%= link_to current_user.name, '#', class: "text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0" %>
+          <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
+            <%= current_user.name_or_email %>
+            <svg class="w-2.5 h-2.5 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+          </button>
+              <!-- Dropdown menu -->
+          <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-300 rounded-lg shadow w-44">
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
+              <li>
+                <%= link_to 'Edit profile', edit_user_path(current_user), class: 'block px-4 py-2 hover:bg-gray-100' %>
+              </li>
+            </ul>
+            <div class="py-1">
+              <%= link_to 'Log out', session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+            </div>
+          </div>
         <% else %>
-          <%= link_to 'Sign Up', new_user_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0" %>
+          <%= link_to 'Sign Up', new_user_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3" %>
+          <%= link_to 'Log In', new_session_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center" %>
         <% end %>
         
         <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
