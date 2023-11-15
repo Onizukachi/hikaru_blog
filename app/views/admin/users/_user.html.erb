@@ -1,0 +1,20 @@
+ <tr class="bg-white border-b hover:bg-gray-50">
+    <th class="px-6 py-4">
+        <%= user.id %>
+    </th>
+    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+        <%= user.name_or_email %>
+    </td>
+    <td class="px-6 py-4">
+        <%= user.email %>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+        <%= user.formated_created_at %>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+      <%= user.formated_updated_at %>
+    </td>
+    <td class="px-6 py-4 text-right">
+        <%= link_to 'Edit', edit_user_path(user), class: 'font-medium text-blue-600 hover:underline' %>
+    </td>
+</tr>

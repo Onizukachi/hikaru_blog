@@ -13,6 +13,7 @@ class AnswersController < ApplicationController
       flash[:success] = 'Answer Created!'
       redirect_to question_path @question
     else
+      @question = @question.decorate
       @pagy, @answers = pagy(Answer.order(created_at: :desc), items: 5)
       @answers = @answers.decorate
       render 'questions/show', status: :unprocessable_entity

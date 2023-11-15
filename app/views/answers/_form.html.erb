@@ -1,6 +1,6 @@
 <%= form_with model: [@question, @answer] do |f| %>
   <div class='mb-2'>
-    <%= f.text_area :body, placeholder: 'Answer body', class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
+    <%= f.text_area :body, placeholder: 'Answer body', required: true, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
   </div>
 
   <%= f.submit 'Submit Answer!', class: 'cursor-pointer mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>

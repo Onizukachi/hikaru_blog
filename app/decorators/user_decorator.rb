@@ -8,4 +8,12 @@ class UserDecorator < Draper::Decorator
 
     email.split('@').first
   end
+
+  def formated_created_at
+    created_at.strftime('%Y-%m-%d %H:%M:%S')
+  end
+
+  def formated_updated_at
+    updated_at.strftime('%Y-%m-%d %H:%M:%S')
+  end
 end

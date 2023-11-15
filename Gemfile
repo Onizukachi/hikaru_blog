@@ -12,6 +12,11 @@ gem 'sprockets-rails'
 
 gem 'redis'
 
+gem 'rubyzip', require: 'zip'
+
+gem 'caxlsx'
+gem 'caxlsx_rails'
+
 gem 'redis-rails'
 
 gem 'sidekiq'
