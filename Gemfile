@@ -17,6 +17,10 @@ gem 'rubyzip', require: 'zip'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+gem 'rubyXL'
+
+gem 'activerecord-import'
+
 gem 'redis-rails'
 
 gem 'sidekiq'

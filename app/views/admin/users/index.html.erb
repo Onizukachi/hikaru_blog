@@ -42,4 +42,19 @@
   <div class='mt-2'>
     <%= pagination(@pagy) %>
   </div>
+
+  <h1 class='text-black text-3xl text-left mb-4 mt-6'>
+    Upload users from XLSX
+  </h1>
+
+  <div class="mt-4">
+    <%= form_tag admin_users_path, multipart: true do %>
+      <%= label_tag :archive, 'Select archive', class: 'block mb-2 text-sm font-medium text-gray-900 ' %>
+
+      <div class="flex flex-row">
+        <%= file_field_tag :archive, class: 'block mr-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50' %>
+        <%= submit_tag 'Upload!', class: 'cursor-pointer  text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
+      </div>
+    <% end %>
+  </div>
 </div>
