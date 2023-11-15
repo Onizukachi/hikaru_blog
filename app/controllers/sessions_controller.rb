@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   before_action :require_no_authentication, except: %i[destroy]
   before_action :require_authentication, only: :destroy
@@ -9,6 +11,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate params[:password]
       sign_in user
+      remember(user) if params[:remember_me] == '1'
       flash[:success] = "Welcome back, #{current_user.name_or_email}!"
       redirect_to questions_path
     else

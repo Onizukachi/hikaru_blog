@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit; end
+
   def create
     @user = User.new user_params
 
@@ -20,8 +22,6 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def edit; end
 
   def update
     if @user.update user_params
