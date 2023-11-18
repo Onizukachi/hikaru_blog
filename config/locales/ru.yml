@@ -1,0 +1,6 @@
+ru:
+  pages:
+      index:
+        title: 'Добро пожаловать в Hikaru Blog'
+  menu:
+    home: 'Главная'
