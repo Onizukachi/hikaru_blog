@@ -1,4 +1,4 @@
-<%= form_with model: [@question, @answer] do |f| %>
+<%= form_with model: [@question, @answer], data: { turbo: false } do |f| %>
   <div class='mb-2'>
     <%= f.text_area :body, placeholder: 'Answer body', required: true, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
   </div>
