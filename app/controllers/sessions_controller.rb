@@ -3,15 +3,14 @@
 class SessionsController < ApplicationController
   before_action :require_no_authentication, except: %i[destroy]
   before_action :require_authentication, only: :destroy
+  before_action :set_user, only: :create
 
   def new; end
 
   def create
-    user = User.find_by(email: params[:email])
-
-    if user&.authenticate params[:password]
-      sign_in user
-      remember(user) if params[:remember_me] == '1'
+    if @user&.authenticate params[:password]
+      sign_in @user
+      remember(@user) if params[:remember_me] == '1'
       flash[:success] = "Welcome back, #{current_user.name_or_email}!"
       redirect_to questions_path
     else
@@ -24,5 +23,11 @@ class SessionsController < ApplicationController
     sign_out
     flash[:success] = 'See you later!'
     redirect_to questions_path
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by(email: params[:email])
   end
 end

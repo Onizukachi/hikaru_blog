@@ -3,6 +3,9 @@
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token
 
+  has_many :answers, dependent: :destroy
+  has_many :questions, dependent: :destroy
+
   has_secure_password validations: false
 
   validate :password_presence
