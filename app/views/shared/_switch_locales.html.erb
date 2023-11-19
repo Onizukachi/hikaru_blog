@@ -1,0 +1,14 @@
+<button id="dropdownLocalesLink" data-dropdown-toggle="dropdownLocales" class="flex mr-3 items-center justify-between w-full py-2 px-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
+  <%= t I18n.locale %>
+  <img src=<%= image_path("#{I18n.locale}.svg") %> width="22" class='ml-1'>
+</button>
+  <!-- Dropdown menu -->
+<div id="dropdownLocales" class="z-10 hidden font-normal bg-gray-100 divide-y divide-gray-300 rounded-lg shadow w-44">
+  <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
+    <% I18n.available_locales.each do |locale| %>
+    <li>
+      <%= link_to t(locale), root_path(locale: locale), class: 'block px-4 py-2 hover:bg-gray-200' %>
+    </li>
+    <% end %>
+  </ul>
+</div>

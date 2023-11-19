@@ -14,7 +14,7 @@ module HikaruBlog
     config.load_defaults 7.1
 
     config.i18n.available_locales = %i[en ru]
-    config.i18n.default_locale = :ru
+    config.i18n.default_locale = :en
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.

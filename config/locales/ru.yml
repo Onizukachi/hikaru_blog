@@ -1,4 +1,6 @@
 ru:
+  ru: 'Русский'
+  en: 'Английский'
   activerecord:
     models:
       question: 'Вопрос'
@@ -6,6 +8,8 @@ ru:
     attributes:
       question:
         title: 'Заголовок'
+        body: 'Текст'
+      answer:
         body: 'Текст'
   errors:
     title: 'Убедитесь что ошибки ниже исправлены:'
@@ -28,3 +32,6 @@ ru:
       success: 'Овтет создан!'
     update:
       success: 'Ответ обновлен!'
+  global:
+    forms:
+      submit: 'Отправить'

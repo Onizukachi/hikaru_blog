@@ -376,6 +376,11 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+flag-icons@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-7.0.2.tgz#ad2a0adeadae60123af1f59f5876418279d7ed2d"
+  integrity sha512-d54NSa0t4GcKflhZWzxjpxj315DScbtdzqVdZKJl+R0zjtHNiLLuUl9Lis+UJRRL/YJbJ80JXP9FYQ4u/eGXAg==
+
 flowbite@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-2.0.0.tgz#f149f63f4752722d888b1300a5f5071a6bf98b7d"

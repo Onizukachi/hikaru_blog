@@ -1,4 +1,6 @@
 en:
+  ru: 'Russian'
+  en: 'English'
   activerecord:
     models:
       question: 'Question'
@@ -6,6 +8,8 @@ en:
     attributes:
       question:
         title: 'Title'
+        body: 'Body'
+      answer:
         body: 'Body'
   errors:
     title: 'Ensure that these requirements are met:'
@@ -28,3 +32,6 @@ en:
       success: 'Answer created!'
     update:
       success: 'Answer updated!'
+  global:
+    forms:
+      submit: 'Submit'
