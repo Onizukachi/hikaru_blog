@@ -1,6 +1,30 @@
 en:
+  activerecord:
+    models:
+      question: 'Question'
+      answer: 'Answer'
+    attributes:
+      question:
+        title: 'Title'
+        body: 'Body'
+  errors:
+    title: 'Ensure that these requirements are met:'
   pages:
     index:
       title: 'Welcome to Hikaru Blog'
   menu:
     home: 'Home'
+  questions:
+    destroy:
+      success: 'Question deleted!'
+    create:
+      success: 'Question created!'
+    update:
+      success: 'Question updated!'
+  answers:
+    destroy:
+      success: 'Answer deleted!'
+    create:
+      success: 'Answer created!'
+    update:
+      success: 'Answer updated!'

@@ -1,6 +1,30 @@
 ru:
+  activerecord:
+    models:
+      question: 'Вопрос'
+      answer: 'Ответ'
+    attributes:
+      question:
+        title: 'Заголовок'
+        body: 'Текст'
+  errors:
+    title: 'Убедитесь что ошибки ниже исправлены:'
   pages:
       index:
         title: 'Добро пожаловать в Hikaru Blog'
   menu:
     home: 'Главная'
+  questions:
+    destroy:
+      success: 'Вопрос удален!'
+    create:
+      success: 'Вопрос создан!'
+    update:
+      success: 'Вопрос обновлен!'
+  answers:
+    destroy:
+      success: 'Овтет удален!'
+    create:
+      success: 'Овтет создан!'
+    update:
+      success: 'Ответ обновлен!'
