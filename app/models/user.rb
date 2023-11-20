@@ -9,11 +9,13 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   validate :password_presence
-  validate :correct_old_password, on: :update, if: -> { password.present? }
+  validate :correct_old_password, on: :update, if: -> { password.present? || email_changed? }
   validates :password, confirmation: true, allow_blank: true, length: { minimum: 8, maximum: 70 }
   validate :password_complexity
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+
+  before_save :set_gravatar_hash, if: :email_changed?
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
@@ -32,6 +34,13 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_gravatar_hash
+    return if email.blank?
+
+    hash = Digest::MD5.hexdigest email.strip.downcase
+    self.gravatar_hash = hash
+  end
 
   def digest(string)
     cost = if ActiveModel::SecurePassword.min_cost

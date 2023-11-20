@@ -18,6 +18,13 @@
       }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
     </div>
 
+    <div class="flex items-center mt-2 text-gray-500 text-xs">
+      <%= @question.user.gravatar %>
+      <p class="italic font-extrabold ml-2">
+        Author: <span class='font-normal'><%= @question.user.name_or_email %></span>
+      </p>
+    </div>
+
     <div class="inline-flex items-center justify-center w-full">
       <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded">
       <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2">

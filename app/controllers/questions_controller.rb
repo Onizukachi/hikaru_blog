@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   def edit; end
 
   def create
-    @question = Question.create question_params
+    @question = current_user.questions.build question_params
 
     if @question.save
       flash[:success] = t '.success'
