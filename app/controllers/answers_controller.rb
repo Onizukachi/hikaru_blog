@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
+  include QuestionsAnswers
   before_action :set_question!
   before_action :set_answer!, except: :create
 
@@ -13,10 +14,7 @@ class AnswersController < ApplicationController
       flash[:success] = t '.success'
       redirect_to question_path @question
     else
-      @question = @question.decorate
-      @pagy, @answers = pagy(Answer.order(created_at: :desc), items: 5)
-      @answers = @answers.decorate
-      render 'questions/show', status: :unprocessable_entity
+      load_questions_answers(do_render: true)
     end
   end
 
