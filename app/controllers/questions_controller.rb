@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @commentable = @question
+    @comment = Comment.new
     load_questions_answers(do_render: false)
   end
 

@@ -25,6 +25,24 @@
       </p>
     </div>
 
+    <section class="bg-white dark:bg-gray-900 py-2 lg:py-2 antialiased">
+      <div class="max-w-2xl mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-lg lg:text-2xl font-bold text-gray-900">Comments (<%= @commentable.comments.size%>)</h2>
+        </div>
+
+        <%= render('shared/errors', object: @comment) %>
+        <%= form_with model: [@commentable, @comment], data: { turbo: false } do |f| %>
+              <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
+                  <%= f.text_area :body, rows: 2, id: 'comment', class: 'px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none', placeholder: 'Write a comment...', required: true %>
+              </div>
+            <%= f.submit 'Post comment', class: 'cursor-pointer inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200' %>
+        <% end %>
+
+        <%= render partial: 'comments/comment', collection: @comments %>
+      </div>
+    </section>
+
     <div class="inline-flex items-center justify-center w-full">
       <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded">
       <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2">
@@ -34,7 +52,7 @@
       </div>
     </div>
 
-    <%= render @answers, question: @question %>
+    <%= render partial: 'answers/answer', collection: @answers, locals: { question: @question } %>
 
     <div>
       <%= pagination(@pagy) %>

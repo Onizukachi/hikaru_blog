@@ -14,6 +14,8 @@ class AnswersController < ApplicationController
       flash[:success] = t '.success'
       redirect_to question_path @question
     else
+      @commentable = @question
+      @comment = Comment.new
       load_questions_answers(do_render: true)
     end
   end

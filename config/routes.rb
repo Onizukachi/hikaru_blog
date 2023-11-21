@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     resources :users, only: %i[new create edit update]
 
     resources :questions do
+      resources :comments, only: %i[create destroy], module: :questions
       resources :answers, except: %i[new show]
+    end
+
+    resources :answers, only: [] do
+      resources :comments, only: %i[create destroy], module: :answers
     end
 
     namespace :admin do
