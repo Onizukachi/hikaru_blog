@@ -20,10 +20,8 @@
       </div>
     </div>
     <section class="bg-gray-100 py-2 lg:py-2 antialiased">
-      <div class="max-w-2xl mx-auto px-4 mt-2">
-        <%= render('shared/errors', object: @comment) %>
-        <%= render partial: 'comments/form', locals: { commentable: answer, comment: @comment } %>
-        <%= render partial: 'comments/comment', collection: answer.comments.decorate %>
+      <div class="max-w-2xl mx-auto px-4">
+        <%= render partial: 'comments/commentable', locals: { commentable: answer, comment: @comment } %>
       </div>
     </section>
   </div>
