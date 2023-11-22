@@ -20,7 +20,9 @@
         <%= f.submit 'Post comment', class: 'cursor-pointer inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200' %>
       <% end %>
 
-      <%= render partial: 'comments/comment', collection: commentable.comments.decorate %>
+      <div class='mt-2'>
+        <%= render partial: 'comments/comment', collection: commentable.comments.decorate %>
+      </div>
     </div>
   </div>
 </div>
