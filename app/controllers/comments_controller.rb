@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
       flash[:success] = 'Comment was created!'
       redirect_to question_path @question
     else
+      @comment = @comment.decorate
       load_questions_answers(do_render: true)
     end
   end

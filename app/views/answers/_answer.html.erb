@@ -1,10 +1,10 @@
-<div class="bg-gray-100 rounded-lg p-6 mb-2" id=<%= dom_id(answer) %>">
+<div class="bg-gray-100 rounded-lg px-6 py-3 mb-2" id=<%= dom_id(answer) %>">
   <div class="flex flex-col space-y-4">
     <div class="bg-white p-4 rounded-lg shadow-md">
         <div class="flex items-center mb-2 text-gray-500 text-xs">
-          <%= question.user.gravatar %>
+          <%= answer.user.gravatar %>
           <p class="italic font-extrabold ml-2">
-            Author: <span class='font-normal'><%= question.user.name_or_email %></span>
+            Author: <span class='font-normal'><%= answer.user.name_or_email %></span>
           </p>
         </div>
       <p class="text-gray-700 text-sm mb-2">Posted on <%= answer.formatted_created_at %></p>
@@ -19,5 +19,12 @@
                     }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
       </div>
     </div>
+    <section class="bg-gray-100 py-2 lg:py-2 antialiased">
+      <div class="max-w-2xl mx-auto px-4 mt-2">
+        <%= render('shared/errors', object: @comment) %>
+        <%= render partial: 'comments/form', locals: { commentable: answer, comment: @comment } %>
+        <%= render partial: 'comments/comment', collection: answer.comments.decorate %>
+      </div>
+    </section>
   </div>
 </div>

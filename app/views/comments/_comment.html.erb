@@ -6,7 +6,7 @@
           </p>  
           <p class="text-sm text-gray-600"><time><%= comment.formatted_created_at %></time></p>
       </div>
-      <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+      <button id="dropdownComment1Button" data-dropdown-toggle="<%= dom_id(comment) %>"
           class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
           type="button">
           <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
@@ -14,8 +14,9 @@
           </svg>
           <span class="sr-only">Comment settings</span>
       </button>
+      
       <!-- Dropdown menu -->
-      <div id="dropdownComment1"
+      <div id="<%= dom_id(comment) %>"
           class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow">
           <ul class="py-1 text-sm text-gray-700"
               aria-labelledby="dropdownMenuIconHorizontalButton">
@@ -23,7 +24,7 @@
                   <%= link_to 'Edit', '#', class: 'block py-2 px-4 hover:bg-gray-100' %>
               </li>
               <li>
-                  <%= link_to 'Remove', question_comment_path(@commentable, comment), method: :delete, data: {
+                  <%= link_to 'Remove', polymorphic_path([comment.commentable, comment]), method: :delete, data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   }, class: 'block py-2 px-4 hover:bg-gray-100' %>
