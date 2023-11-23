@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
-    @pagy, @questions = pagy(Question.order(created_at: :desc), items: 15)
+    @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
+    @pagy, @questions = pagy Question.all_by_tags(@tags)
     @questions = @questions.decorate
   end
 
@@ -16,6 +17,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @tags = Tag.all
   end
 
   def edit; end
@@ -53,6 +55,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, tag_ids: [])
   end
 end

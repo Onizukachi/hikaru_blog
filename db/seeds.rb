@@ -24,7 +24,12 @@
 #   user.save
 # end
 
-User.find_each do |user|
-  user.send(:set_gravatar_hash)
-  user.save
+# User.find_each do |user|
+#   user.send(:set_gravatar_hash)
+#   user.save
+# end
+
+30.times do
+  title = Faker::Hipster.word
+  Tag.find_or_create_by title:
 end
