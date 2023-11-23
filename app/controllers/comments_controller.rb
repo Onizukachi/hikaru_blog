@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     comment.destroy
 
     flash[:success] = 'Comment was deleted!'
-    redirect_to question_path @commentable
+    redirect_to question_path @question
   end
 
   private

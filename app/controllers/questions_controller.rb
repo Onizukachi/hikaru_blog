@@ -11,7 +11,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question_comments = CommentDecorator.decorate_collection @question.comments.order(created_at: :desc)
     load_questions_answers(do_render: false)
   end
 
