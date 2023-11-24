@@ -2,23 +2,16 @@
 <%= currently_at 'Questions' %>
 
   <div class='mb-6 lg:w-1/2 md:w-full'>
-    <%= form_with url: questions_path, method: :get do |f| %>
+     <%= form_with url: questions_path, method: :get, data: { turbo_frame: 'tag_search_results', turbo_action: 'advance', controller: 'search', action: 'input->search#submit' } do |f| %>  
+      <%= f.label :query, 'Search', class: 'mb-2 text-sm font-medium text-gray-900 sr-only' %>
       <div class="relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-          </svg>
-        </div>
-        <%= f.collection_select :tag_ids, Tag.all, :id, :title, {selected: params[:tag_ids]},
-            multiple: true, data: {controller: 'slim', slim_target: 'field'}, placeholder: 'sdsds', class: 'h-12' %>
-
-      <%= button_tag(type: 'submit', class: 'cursor-pointer inline-flex items-center text-white absolute end-2 bottom-1.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2') do %>
-        <%= content_tag(:svg, '', class: 'w-4 h-4 me-2', 'aria-hidden': 'true', xmlns: 'http://www.w3.org/2000/svg', fill: 'none', viewBox: '0 0 20 20') do %>
-            <%= content_tag(:path, '', stroke: 'currentColor', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'm19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z') %>
-        <% end %>
-        Search
-      <% end %>
-    
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+          </div>
+          <%= f.text_field :query, placeholder: 'Search by Tags', class: 'block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 '%>
+          <%= f.submit 'Search', class: 'text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2' %>
       </div>
     <% end %>
   </div>
@@ -29,13 +22,15 @@
                 class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-lg rounded-lg text-xl px-5 py-2.5' %>
   </div>
 
-  <div>
-    <%= pagination(@pagy) %>
-  </div>
-  
-  <%= render @questions %>
+  <%= turbo_frame_tag 'tag_search_results' do %>
+    <div>
+      <%= pagination(@pagy) %>
+    </div>
+    
+    <%= render @questions %>
 
-  <div class='mt-4'>
-    <%= pagination(@pagy) %>
-  </div>
+    <div class='mt-4'>
+      <%= pagination(@pagy) %>
+    </div>
+  <% end %>
 </div>

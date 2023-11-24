@@ -5,8 +5,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
-    @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
-    @pagy, @questions = pagy Question.all_by_tags(@tags)
+    @pagy, @questions = pagy Question.all_by_tags params
     @questions = @questions.decorate
   end
 

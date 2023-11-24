@@ -11,9 +11,14 @@ class Question < ApplicationRecord
   validates :title, presence: true, length: { minimum: 2 }
   validates :body, presence: true, length: { minimum: 2 }
 
-  scope :all_by_tags, lambda { |tags|
+  scope :all_by_tags, lambda { |params|
     questions = includes(:user)
-    questions = if tags.present?
+
+    questions = if params[:query].present?
+                  tags = Tag.search params
+                  questions.joins(:tags).where(tags:).preload(:tags)
+                elsif params.has_key? :tag_ids
+                  tags = Tag.where(id: params[:tag_ids])
                   questions.joins(:tags).where(tags:).preload(:tags)
                 else
                   questions.includes(:question_tags, :tags)
