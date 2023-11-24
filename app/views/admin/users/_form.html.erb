@@ -1,17 +1,12 @@
-<%= form_with model: @user do |f| %>
+<%= form_with model: @user, url: admin_user_path(@user) do |f| %>
   <div class='mb-4'>
     <%= f.label :email, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
     <%= f.email_field :email, placeholder: 'E-mail', class: 'form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
   </div>
 
-  <div class='mb-4'>
+    <div class='mb-4'>
     <%= f.label :name, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
     <%= f.text_field :name, placeholder: 'Name', class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
-  </div>
-
-  <div class='mb-4'>
-    <%= f.label :role, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
-    <%= f.text_field :role, disabled: true, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
   </div>
 
   <div class='mb-4'>
@@ -24,12 +19,10 @@
     <%= f.password_field :password_confirmation, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
   </div>
 
-  <% unless @user.new_record? %>
-    <div class='mb-4'>
-      <%= f.label :old_password, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
-      <%= f.password_field :old_password, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
-    </div>
-  <% end %>
+  <div class='mb-4'>
+    <%= f.label :role, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+    <%= f.select :role, user_roles, {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+  </div>
 
   <%= f.submit (@user.new_record? ? 'Register!' : 'Save'), class: 'cursor-pointer mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
 <% end %>

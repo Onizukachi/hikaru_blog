@@ -3,6 +3,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :require_authentication
+    before_action :set_user, only: %i[edit update destroy]
 
     def index
       respond_to do |format|
@@ -15,6 +16,8 @@ module Admin
       end
     end
 
+    def edit; end
+
     def create
       if params[:archive].present?
         UserBulkService.call params[:archive]
@@ -24,7 +27,31 @@ module Admin
       redirect_to admin_users_path
     end
 
+    def update
+      if @user.update user_params
+        flash[:success] = 'User was successfully updated!'
+        redirect_to admin_users_path
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @user.destroy
+
+      flash[:success] = 'User was deleted!'
+      redirect_to admin_users_path
+    end
+
     private
+
+    def set_user
+      @user = EditableUser.find params[:id]
+    end
+
+    def user_params
+      params.require(:editable_user).permit(:email, :name, :password, :password_confirmation, :old_password, :role)
+    end
 
     def respond_with_zipped_users
       zip_stream = Zip::OutputStream.write_buffer do |zos|

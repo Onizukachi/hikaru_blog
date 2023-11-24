@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  enum :role, { basic: 0, moderator: 1, admin: 2 }, suffix: :role
   attr_accessor :old_password, :remember_token
 
   has_many :answers, dependent: :destroy
@@ -9,7 +10,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   validate :password_presence
-  validate :correct_old_password, on: :update, if: -> { password.present? || email_changed? }
+  validate :correct_old_password, on: :update, if: -> { validate_correct_old_password? }
   validates :password, confirmation: true, allow_blank: true, length: { minimum: 8, maximum: 70 }
   validate :password_complexity
 
@@ -68,5 +69,9 @@ class User < ApplicationRecord
 
   def password_presence
     errors.add(:password, :blank) if password_digest.blank?
+  end
+
+  def validate_correct_old_password?
+    password.present? || email_changed?
   end
 end

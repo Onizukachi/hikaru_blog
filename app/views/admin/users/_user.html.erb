@@ -9,12 +9,13 @@
         <%= user.email %>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-        <%= user.formated_created_at %>
+        <%= user.role %>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-      <%= user.formated_updated_at %>
+      <%= user.formated_created_at %>
     </td>
-    <td class="px-6 py-4 text-right">
-        <%= link_to 'Edit', edit_user_path(user), class: 'font-medium text-blue-600 hover:underline' %>
+    <td class="whitespace-nowrap">
+        <%= link_to 'Edit', edit_admin_user_path(user), class: 'text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-2 text-center mr-2' %>
+        <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-2 text-center' %>
     </td>
 </tr>
