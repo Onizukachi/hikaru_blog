@@ -17,10 +17,12 @@
   </div>
 
 <div class='mb-6 lg:w-1/2 md:w-full'>
-  <div class='mb-4'>
-    <%= link_to 'New question', new_question_path,
-                class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-lg rounded-lg text-xl px-5 py-2.5' %>
-  </div>
+  <% if policy(:question).new? %>
+    <div class='mb-4'>
+      <%= link_to 'New question', new_question_path, data: { turbo_frame: '_top' },
+                  class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-lg rounded-lg text-xl px-5 py-2.5' %>
+    </div>
+  <% end %>
 
   <%= turbo_frame_tag 'tag_search_results' do %>
     <div>

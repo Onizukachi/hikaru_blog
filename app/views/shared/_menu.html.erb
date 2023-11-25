@@ -46,6 +46,11 @@
           <li>
             <%= nav_tab 'Questions', questions_path, class: 'block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0', current_page: current_page %>
           </li>
+          <% if policy([:admin, :editable_user]).index? %>
+            <li>
+              <%= nav_tab 'Users', admin_users_path, class: 'block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0', current_page: current_page %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

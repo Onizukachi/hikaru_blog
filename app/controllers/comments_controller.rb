@@ -2,9 +2,11 @@
 
 class CommentsController < ApplicationController
   include QuestionsAnswers
+  after_action :verify_authorized
 
   def create
     @comment = @commentable.comments.build comment_params
+    authorize @comment
 
     if @comment.save
       flash[:success] = 'Comment was created!'
@@ -17,6 +19,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @commentable.comments.find params[:id]
+    authorize comment
     comment.destroy
 
     flash[:success] = 'Comment was deleted!'

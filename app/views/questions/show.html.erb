@@ -9,14 +9,22 @@
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow mt-8">
     <h5 class="mb-5 text-2xl font-bold text-center tracking-tight text-gray-900"><%= @question.title %></h5>
     <div class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= sanitize(@question.body) %></div>
-    <div class="inline-flex rounded-md shadow-sm" role="group">
-      <%= link_to 'Edit', edit_question_path(@question),
-                  class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-l-lg bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium' %>
-      <%= link_to 'Delete', question_path(@question), method: :delete, data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
-    </div>
+
+    <% if policy(@question).update? || policy(@question).destroy? %>
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <% if policy(@question).update? %>
+          <%= link_to 'Edit', edit_question_path(@question),
+                      class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-l-lg bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium' %>
+        <% end %>
+
+        <% if policy(@question).destroy? %>
+          <%= link_to 'Delete', question_path(@question), method: :delete, data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="flex items-center mt-2 text-gray-500 text-xs">
       <%= @question.user.gravatar %>

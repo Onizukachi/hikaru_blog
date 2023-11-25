@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+  # frozen_string_literal: true
 
 class Tag < ApplicationRecord
   validates :title, presence: true, uniqueness: true
@@ -10,7 +10,7 @@ class Tag < ApplicationRecord
       all
     else
       where(
-        'title LIKE ?', "%#{sanitize_sql_like(params[:query])}%"
+        'title ILIKE ?', "%#{sanitize_sql_like(params[:query])}%"
       )
     end
   end
