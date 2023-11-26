@@ -9,6 +9,10 @@ class GuestUser
     false
   end
 
+  def is_banned
+    false
+  end
+
   def method_missing(name, *args, &block)
     return false if name.to_s.end_with?('_role?')
 

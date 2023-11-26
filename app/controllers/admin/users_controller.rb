@@ -3,7 +3,7 @@
 module Admin
   class UsersController < BaseController
     before_action :require_authentication
-    before_action :set_user, only: %i[edit update destroy]
+    before_action :set_user, only: %i[edit update destroy ban unban]
     before_action :authorize_user!
     after_action :verify_authorized
 
@@ -45,10 +45,22 @@ module Admin
       redirect_to admin_users_path
     end
 
+    def ban
+      @user.ban
+      flash[:success] = "User #{@user.decorate.name_or_email} was banned!"
+      redirect_to admin_users_path
+    end
+
+    def unban
+      @user.unban
+      flash[:success] = "User #{@user.decorate.name_or_email} was unbanned!"
+      redirect_to admin_users_path
+    end
+
     private
 
     def set_user
-      @user = EditableUser.find params[:id]
+      @user = EditableUser.find(params[:id])
     end
 
     def user_params

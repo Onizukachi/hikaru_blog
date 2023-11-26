@@ -18,6 +18,18 @@ class User < ApplicationRecord
 
   before_save :set_gravatar_hash, if: :email_changed?
 
+  def ban_status
+    is_banned ? 'banned' : 'not banned'
+  end
+
+  def ban
+    update(is_banned: true) if self.basic_role?
+  end
+
+  def unban
+    update(is_banned: false) if self.basic_role?
+  end
+
   def author?(obj)
     self == obj.user
   end

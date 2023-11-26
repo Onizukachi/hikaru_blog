@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
-      resources :users, only: %i[index create edit update destroy]
+      resources :users, only: %i[index create edit update destroy] do
+        get 'ban', on: :member
+        get 'unban', on: :member
+      end
+
     end
 
     root 'pages#index'
