@@ -5,6 +5,10 @@ class PasswordResetsController < ApplicationController
   before_action :check_user_params, only: %i[edit update]
   before_action :set_user, only: %i[edit update]
 
+  def new; end
+
+  def edit; end
+
   def create
     user = User.find_by(email: params[:email])
 
@@ -18,8 +22,6 @@ class PasswordResetsController < ApplicationController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @user.update user_params
