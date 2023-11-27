@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Recoverable
+  include Rememberable
+
   enum :role, { basic: 0, moderator: 1, admin: 2 }, suffix: :role
   attr_accessor :old_password, :remember_token
 
@@ -36,22 +39,6 @@ class User < ApplicationRecord
 
   def guest?
     false
-  end
-
-  def remember_me
-    self.remember_token = SecureRandom.urlsafe_base64
-    update_column :remember_token_digest, digest(remember_token)
-  end
-
-  def forget_me
-    update_column :remember_token_digest, nil
-    self.remember_token = nil
-  end
-
-  def remember_token_authenticated?(remember_token)
-    return false if remember_token_digest.blank?
-
-    BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
   end
 
   private

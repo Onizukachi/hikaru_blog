@@ -1,0 +1,6 @@
+Someone has requested password reset for your account. Please visit this URL to reset:
+
+<%= url_for edit_password_reset_url(editable_user: {
+  reset_password_token: @user.reset_password_token,
+  email: @user.email }) %>
+

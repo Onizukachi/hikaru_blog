@@ -1,0 +1,29 @@
+<%= provide :page_title, 'Password Reset' %>
+<%= currently_at 'Password Reset' %>
+
+<div class='mb-6 w-1/2'>
+  <h1 class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-8'>
+    Password Recovery
+  </h1>
+
+  <%= form_with url: password_reset_path, data: { turbo: false } do |f| %>
+    <div class='mb-4'>
+      <%= f.label :email, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+      <%= f.email_field :email, required: true, placeholder: 'E-mail', value: params[:email], class: 'form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+    </div>
+
+    <div>
+      <%= f.submit 'Send reset instructions', class: 'cursor-pointer mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
+    </div>
+
+    <div class="mt-2">
+      <%= link_to new_session_path, class: 'text-lg flex font-medium text-blue-700 hover:underline' do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+        </svg>
+        Back
+    <% end %>
+    </div>
+
+  <% end %>
+</div>

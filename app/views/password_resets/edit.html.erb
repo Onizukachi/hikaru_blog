@@ -1,0 +1,28 @@
+<%= provide :page_title, 'Password Recovery' %>
+<%= currently_at 'Password Recovery' %>
+
+<div class='mb-6 w-1/2'>
+  <h1 class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-8'>
+    Password Recovery
+  </h1>
+
+  <%= form_with model: @user, url: password_reset_path, method: :patch do |f| %>
+    <%= render 'shared/errors', object: @user  %>
+    <%= f.hidden_field :email, :value => @user.email %>
+    <%= f.hidden_field :reset_password_token, :value => @user.reset_password_token %>
+
+    <div class='mb-4'>
+      <%= f.label :password, 'New password', required: true, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+      <%= f.password_field :password, required: true, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class='mb-4'>
+      <%= f.label :password_confirmation, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+      <%= f.password_field :password_confirmation, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div>
+      <%= f.submit 'Reset my password!', class: 'cursor-pointer mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
+    </div>
+  <% end %>
+</div>

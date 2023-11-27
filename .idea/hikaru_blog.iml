@@ -65,6 +65,7 @@
     <orderEntry type="library" scope="PROVIDED" name="error_highlight (v0.5.1, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.12.0, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faker (v3.2.2, rbenv: 3.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="freezolite (v0.4.0, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.2.1, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="htmlentities (v4.3.4, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.1, rbenv: 3.1.0) [gem]" level="application" />
@@ -74,6 +75,9 @@
     <orderEntry type="library" scope="PROVIDED" name="jsbundling-rails (v1.2.1, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.6.3, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="language_server-protocol (v3.17.0.3, rbenv: 3.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="launchy (v2.5.2, rbenv: 3.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="letter_opener (v1.8.1, rbenv: 3.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="letter_opener_web (v2.0.0, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.21.4, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.8.1, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="marcel (v1.0.2, rbenv: 3.1.0) [gem]" level="application" />
@@ -119,6 +123,7 @@
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.8.2, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.4.0, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="request_store (v1.5.1, rbenv: 3.1.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="require-hooks (v0.2.0, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.6, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.57.2, rbenv: 3.1.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.30.0, rbenv: 3.1.0) [gem]" level="application" />
@@ -525,6 +530,7 @@
                   <RakeTaskImpl description="" fullCommand="tmp:cache:clear" id="clear" />
                 </subtasks>
               </RakeTaskImpl>
+              <RakeTaskImpl description="" fullCommand="tmp:letter_opener" id="letter_opener" />
               <RakeTaskImpl id="pids">
                 <subtasks>
                   <RakeTaskImpl description="" fullCommand="tmp:pids:clear" id="clear" />

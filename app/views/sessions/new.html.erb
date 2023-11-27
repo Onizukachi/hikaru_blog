@@ -6,28 +6,30 @@
     Log in to your account
   </h1>
 
-<%= form_with url: session_path, data: { turbo: false } do |f| %>
-  <div class='mb-4'>
-    <%= f.label :email, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
-    <%= f.email_field :email, placeholder: 'E-mail', value: params[:email], class: 'form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
-  </div>
+  <%= form_with url: session_path, data: { turbo: false } do |f| %>
+    <div class='mb-4'>
+      <%= f.label :email, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+      <%= f.email_field :email, placeholder: 'E-mail', value: params[:email], class: 'form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+    </div>
 
-  <div class='mb-4'>
-    <%= f.label :password, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
-    <%= f.password_field :password, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
-  </div>
+    <div class='mb-4'>
+      <%= f.label :password, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+      <%= f.password_field :password, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
 
-  <div class="flex items-center justify-between">
-    <div class="flex items-start">
-      <div class="flex items-center h-5">
-        <%= f.check_box :remember_me, class: 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300' %>
-      </div>
-      <div class="ml-3 text-sm">
-        <%= f.label :remember_me, class: 'text-gray-500' %>
+    <div class="flex items-center justify-between">
+      <div class="flex items-start">
+        <div class="flex items-center h-5">
+          <%= f.check_box :remember_me, class: 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300' %>
+        </div>
+        <div class="ml-3 text-sm">
+          <%= f.label :remember_me, class: 'text-gray-500' %>
+        </div>
+
+        <%= link_to 'Forgot password?', new_password_reset_path, class: 'ml-8 text-sm font-medium text-blue-700 hover:underline' %>
       </div>
     </div>
-    <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
-  </div>
 
-  <%= f.submit 'Log In!', class: 'cursor-pointer mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
-<% end %>
+    <%= f.submit 'Log In!', class: 'cursor-pointer mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
+  <% end %>
+</div>

@@ -33,7 +33,6 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.action_controller.enable_fragment_cache_logging = true
 
-  # config.cache_store = :memory_store
   config.cache_store = :redis_store, ENV.fetch('REDIS_URL', 'redis://localhost:7963/1')
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
@@ -42,9 +41,14 @@ Rails.application.configure do
   config.assets.debug = true
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching = true
+
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
