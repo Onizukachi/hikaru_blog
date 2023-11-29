@@ -1,4 +1,4 @@
-class UserBulkService < ApplicationService
+class UserBulkImportService < ApplicationService
   attr_reader :archive_key, :service
 
   def initialize(archive_key)

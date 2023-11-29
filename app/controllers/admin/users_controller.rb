@@ -14,7 +14,11 @@ module Admin
           @users = @users.decorate
         end
 
-        format.zip { respond_with_zipped_users }
+        format.zip do |_format|
+          UserBulkExportJob.perform_later current_user
+          flash[:success] = 'Export is in process. You will get archive via email!'
+          redirect_to admin_users_path
+        end
       end
     end
 
