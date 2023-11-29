@@ -14,7 +14,7 @@ class PasswordResetsController < ApplicationController
 
     if user.present?
       user.set_reset_password_token
-      PasswordResetMailer.with(user:).reset_email.deliver_now
+      PasswordResetMailer.with(user:).reset_email.deliver_later
       flash[:success] = 'Instuctions was sent to your email'
       redirect_to new_session_path
     else
@@ -44,8 +44,11 @@ class PasswordResetsController < ApplicationController
 
   def set_user
     @user = EditableUser.find_by email: params[:editable_user][:email],
-                         reset_password_token: params[:editable_user][:reset_password_token]
+                                 reset_password_token: params[:editable_user][:reset_password_token]
 
-    redirect_to new_session_path, flash: { warning: 'Failed to reset password' } unless @user&.reset_password_period_valid?
+    return if @user&.reset_password_period_valid?
+
+    redirect_to new_session_path,
+                flash: { warning: 'Failed to reset password' }
   end
 end

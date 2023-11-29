@@ -15,3 +15,5 @@ Metrics/BlockLength:
    Enabled: false
 Metrics/MethodLength:
    Enabled: false
+Lint/MissingSuper:
+   Enabled: false

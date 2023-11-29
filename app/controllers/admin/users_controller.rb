@@ -22,8 +22,8 @@ module Admin
 
     def create
       if params[:archive].present?
-        UserBulkService.call params[:archive]
-        flash[:success] = 'Users Imported!'
+        UserBulkImportJob.perform_later create_blob.key, current_user
+        flash[:success] = 'Your imort has been enqued! Wait untill in handled.'
       end
 
       redirect_to admin_users_path
@@ -65,6 +65,10 @@ module Admin
 
     def user_params
       params.require(:editable_user).permit(:email, :name, :password, :password_confirmation, :old_password, :role)
+    end
+
+    def create_blob
+      ActiveStorage::Blob.create_and_upload!(io: params[:archive], filename: params[:archive].original_filename)
     end
 
     def respond_with_zipped_users
