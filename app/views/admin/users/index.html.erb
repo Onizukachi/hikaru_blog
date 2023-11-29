@@ -7,8 +7,9 @@
   </h1>
 
    <div class='mb-4'>
-    <%= link_to 'Download zipped XLSX', admin_users_path(format: :zip), method: :get, data: {turbo_method: :get, turbo_confirm: "Sure?"},
-                class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-lg rounded-lg text-xl px-5 py-2.5' %>
+    <%= link_to 'Download zipped XLSX', admin_users_path(format: :zip),
+                class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-lg rounded-lg text-xl px-5 py-2.5',
+                data: {turbo_confirm: 'Are you sure?'} %>
   </div>
 
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
