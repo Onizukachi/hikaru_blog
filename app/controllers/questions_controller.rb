@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @pagy, @questions = pagy Question.all_by_tags params
+    @pagy, @questions = pagy(Question.all_by_tags(params), link_extra: 'data_turbo_frame="pagination_pagy"')
     @questions = @questions.decorate
   end
 
@@ -27,26 +27,50 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build question_params
 
     if @question.save
-      flash[:success] = t '.success'
-      redirect_to questions_path
+      respond_to do |format|
+        format.html do
+          flash[:success] = t '.success'
+          redirect_to questions_path
+        end
+
+        format.turbo_stream do
+          flash.now[:success] = t '.success'
+          @question = @question.decorate
+        end
+      end
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
   def update
     if @question.update(question_params)
-      flash[:success] = t '.success'
-      redirect_to questions_path
+      respond_to do |format|
+        format.html do
+          flash[:success] = t '.success'
+          redirect_to questions_path
+        end
+
+        format.turbo_stream do
+          flash.now[:success] = t '.success'
+          @question = @question.decorate
+        end
+      end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
   def destroy
     @question.destroy
-    flash[:success] = t '.success'
-    redirect_to questions_path
+    respond_to do |format|
+      format.html do
+        flash[:success] = t '.success'
+        redirect_to questions_path
+      end
+
+      format.turbo_stream { flash.now[:success] = t '.success' }
+    end
   end
 
   private

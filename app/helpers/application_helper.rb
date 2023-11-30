@@ -43,4 +43,8 @@ module ApplicationHelper
   def params_plus(additional_params)
     params.to_unsafe_h.merge(additional_params)
   end
+
+  def render_turbo_stream_flash_messages
+    turbo_stream.prepend 'flash', partial: 'shared/flash'
+  end
 end

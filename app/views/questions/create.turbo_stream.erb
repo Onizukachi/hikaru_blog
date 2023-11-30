@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend 'questions', render(@question) %>
+<%= turbo_stream.update Question.new, "" %>
+<%= render_turbo_stream_flash_messages %>
