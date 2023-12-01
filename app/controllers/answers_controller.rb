@@ -13,8 +13,18 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build answer_create_params
 
     if @answer.save
-      flash[:success] = t '.success'
-      redirect_to question_path @question
+      respond_to do |format|
+        format.html do
+          flash[:success] = t '.success'
+          redirect_to question_path @question
+        end
+
+        format.turbo_stream do
+          @answer = @answer.decorate
+          flash.now[:success] = t '.success'
+        end
+      end
+
     else
       @commentable = @question
       @comment = Comment.new
