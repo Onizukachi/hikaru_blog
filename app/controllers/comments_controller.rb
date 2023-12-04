@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.build comment_params
     authorize @comment
-    @comment_count = @commentable.comments.size
 
     if @comment.save
       respond_to do |format|
@@ -19,6 +18,7 @@ class CommentsController < ApplicationController
         format.turbo_stream do
           flash.now[:success] = 'Comment was created!'
           @comment = @comment.decorate
+          @comment_count = @commentable.comments.size
         end
       end
 
@@ -32,11 +32,11 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.find params[:id]
     authorize @comment
     @comment.destroy
-    @comment_count = @commentable.comments.size
 
     respond_to do |format|
       format.turbo_stream do
         flash.now[:success] = 'Comment was deleted!'
+        @comment_count = @commentable.comments.size
       end
 
       format.html do
