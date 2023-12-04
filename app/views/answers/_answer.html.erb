@@ -1,12 +1,16 @@
-<div class="bg-white p-4 rounded-lg shadow-md">
-  <div class="flex items-center mb-2 text-gray-500 text-xs">
-    <%= answer.user.gravatar %>
-    <p class="italic font-extrabold ml-2">
-      Author: <span class='font-normal'><%= answer.user.name_or_email %></span>
-    </p>
+<%= turbo_frame_tag "#{dom_id(answer)}_with_comments" do %>
+  <div class="bg-gray-100 rounded-lg px-6 py-3 mb-2">
+    <div class="flex flex-col space-y-4">
+      <%= render partial: 'answers/only_answer', locals: { answer:, question: } %>
+
+      <section class="bg-gray-100 py-2 lg:py-2 antialiased">
+        <div class="max-w-2xl mx-auto px-4">
+          <%= render partial: 'comments/commentable', locals: { commentable: answer, comment: @comment } %>
+        </div>
+      </section>
+    </div>
   </div>
-  <p class="text-gray-700 text-sm mb-2">Posted on <%= answer.formatted_created_at %></p>
-  <div class="text-gray-700"><%= sanitize answer.body %></div>
+<% end %>
 
   <% if policy(answer).update? || policy(answer).destroy? %>
     <div class="inline-flex rounded-md shadow-sm mt-2" role="group">

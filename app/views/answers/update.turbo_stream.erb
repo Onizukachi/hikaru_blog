@@ -1,1 +1,2 @@
-<%= turbo_stream.replace @answer, render(@answer, question: @answer.question) %>
+<%= turbo_stream.replace @answer, partial: 'answers/only_answer', locals: { answer: @answer, question: @answer.question } %>
+<%= render_turbo_stream_flash_messages %>

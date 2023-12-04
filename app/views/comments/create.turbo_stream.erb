@@ -1,0 +1,5 @@
+<%= turbo_stream.append [dom_id(@comment.commentable), 'comment_list'],
+                         render(partial: 'comments/comment', locals: {comment: @comment, comment_counter: @comment.commentable.comments.index(@comment) }) %>
+<%= turbo_stream.replace [dom_id(@comment.commentable),  dom_id(Comment.new)],
+                          render(partial: 'comments/form', locals: { comment: Comment.new, commentable: @comment.commentable }) %>
+<%= render_turbo_stream_flash_messages %>

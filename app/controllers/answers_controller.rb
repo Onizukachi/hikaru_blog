@@ -45,7 +45,6 @@ class AnswersController < ApplicationController
           @answer = @answer.decorate
         end
       end
-
     else
       render :edit
     end
@@ -53,8 +52,17 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    flash[:success] = t '.success'
-    redirect_to question_path(@question)
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = t '.success'
+        redirect_to question_path(@question)
+      end
+
+      format.turbo_stream do
+        flash.now[:success] = t '.success'
+      end
+    end
   end
 
   private
