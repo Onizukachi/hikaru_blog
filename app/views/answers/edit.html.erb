@@ -6,9 +6,11 @@
     Edit answer
   </h1>
 
-  <%= render 'shared/errors', object: @answer  %>
+  <%= turbo_frame_tag @answer do %>
+    <%= render 'shared/errors', object: @answer  %>
 
-  <div class="p-6 border-2 border-sky-600 rounded-md border-solid shadow-xl">
-    <%= render 'form' %>
-  </div>
+    <div class="p-6 border-2 border-sky-600 rounded-md border-solid shadow-xl">
+      <%= render 'form' %>
+    </div>
+  <% end %>
 </div>

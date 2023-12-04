@@ -1,0 +1,14 @@
+<div class="bg-gray-100 rounded-lg px-6 py-3 mb-2">
+  <div class="flex flex-col space-y-4">
+    <%= turbo_frame_tag answer do %>
+      <%= render answer, question: answer.question %>
+    <% end %>
+
+    <section class="bg-gray-100 py-2 lg:py-2 antialiased">
+      <div class="max-w-2xl mx-auto px-4">
+        <%= render partial: 'comments/commentable', locals: { commentable: answer, comment: @comment } %>
+      </div>
+    </section>
+  </div>
+</div>
+
