@@ -6,9 +6,7 @@
     Edit answer
   </h1>
 
-  <%= render 'shared/errors', object: @answer  %>
-
   <div class="p-6 border-2 border-sky-600 rounded-md border-solid shadow-xl">
-    <%= render 'form' %>
+    <%= render partial: 'form', locals: { question: @question, answer: @answer } %>
   </div>
 </div>

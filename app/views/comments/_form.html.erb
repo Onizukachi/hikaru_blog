@@ -1,0 +1,14 @@
+<% comment_builder = commentable.comments.build %>
+
+<%= turbo_frame_tag [dom_id(commentable), dom_id(comment || comment_builder)] do %>
+  <% if policy(comment_builder).create? %>
+    <%= form_with model: [commentable, comment || comment_builder], data: { controller: :form, action: "turbo:submit-end->form#clear" } do |f| %>
+      <%= render('shared/errors', object: comment) %>
+
+      <div class="py-2 px-4 mb-2 bg-white rounded-lg rounded-t-lg border border-gray-200">
+        <%= f.text_area :body, rows: 2, id: 'comment', class: 'px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none', placeholder: 'Write a comment...', required: true %>
+      </div>
+      <%= f.submit 'Post comment', class: 'cursor-pointer inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200' %>
+    <% end %>
+  <% end %>
+<% end %>

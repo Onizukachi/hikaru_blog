@@ -29,11 +29,9 @@
       <%= pagination(@pagy) %>
     </div>
 
-    <%= render('shared/errors', object: @answer) %>
-
     <% if policy(:answer).create? %>
       <div class='my-4'>
-        <%= render 'answers/form' %>
+        <%= render partial: 'answers/form', locals: { question: @question, answer: @answer } %>
       </div>
     <% end %>
   </div>

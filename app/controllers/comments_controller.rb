@@ -9,8 +9,18 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.save
-      flash[:success] = 'Comment was created!'
-      redirect_to question_path @question
+      respond_to do |format|
+        format.html do
+          flash[:success] = 'Comment was created!'
+          redirect_to question_path @question
+        end
+
+        format.turbo_stream do
+          flash.now[:success] = 'Comment was created!'
+          @comment = @comment.decorate
+        end
+      end
+
     else
       @comment = @comment.decorate
       load_questions_answers(do_render: true)
