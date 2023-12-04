@@ -1,2 +1,3 @@
 <%= turbo_stream.prepend 'answers', render(@answer, question: @answer.question) %>
-<%= render_turbo_stream_flash_messages %>
+<%= turbo_stream.update Answer.new, render(partial: 'answers/form', locals: { answer: Answer.new, question: @answer.question }) %>
+<%= render_turbo_stream_flash_messages %> 

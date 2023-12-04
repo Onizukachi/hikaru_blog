@@ -11,19 +11,3 @@
     </div>
   </div>
 <% end %>
-
-  <% if policy(answer).update? || policy(answer).destroy? %>
-    <div class="inline-flex rounded-md shadow-sm mt-2" role="group">
-      <% if policy(answer).update? %>
-        <%= link_to 'Edit answer', edit_question_answer_path(question, answer), data: { turbo_frame: dom_id(answer) },
-                    class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-l-lg bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium' %>
-      <% end %>
-      <% if policy(answer).destroy? %>
-        <%= link_to 'Delete answer', question_answer_path(question, answer), method: :delete, data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"
-        }, class: 'text-sm px-4 py-2 focus:outline-none text-white rounded-r-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium' %>
-      <% end %>
-    </div>
-  <% end %>
-</div>

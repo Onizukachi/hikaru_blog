@@ -2,4 +2,9 @@
                          render(partial: 'comments/comment', locals: {comment: @comment, comment_counter: @comment.commentable.comments.index(@comment) }) %>
 <%= turbo_stream.replace [dom_id(@comment.commentable),  dom_id(Comment.new)],
                           render(partial: 'comments/form', locals: { comment: Comment.new, commentable: @comment.commentable }) %>
+<%= turbo_stream.replace [dom_id(@comment.commentable), 'comment_size'] do %>
+  <%= turbo_frame_tag [dom_id(@comment.commentable), 'comment_size'] do %>
+     (<%= @comment_count %>) 
+  <% end %>
+<% end %>
 <%= render_turbo_stream_flash_messages %>

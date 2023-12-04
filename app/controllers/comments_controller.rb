@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.build comment_params
     authorize @comment
+    @comment_count = @commentable.comments.size
 
     if @comment.save
       respond_to do |format|
@@ -28,12 +29,21 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = @commentable.comments.find params[:id]
-    authorize comment
-    comment.destroy
+    @comment = @commentable.comments.find params[:id]
+    authorize @comment
+    @comment.destroy
+    @comment_count = @commentable.comments.size
 
-    flash[:success] = 'Comment was deleted!'
-    redirect_to question_path @question
+    respond_to do |format|
+      format.turbo_stream do
+        flash.now[:success] = 'Comment was deleted!'
+      end
+
+      format.html do
+        flash[:success] = 'Comment was deleted!'
+        redirect_to question_path @question
+      end
+    end
   end
 
   private
