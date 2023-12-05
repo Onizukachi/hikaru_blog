@@ -7,7 +7,7 @@
   </h1>
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow mt-8">
     <%= turbo_frame_tag @question do %>
-      <%= render partial: 'questions/question_show', question: @question %>
+      <%= render partial: 'questions/question_show', locals: { question: @question } %>
     <% end %>
 
     <%= render partial: 'comments/commentable', locals: { commentable: @question, comment: @comment } %>
