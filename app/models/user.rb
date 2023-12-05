@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :answers, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   has_secure_password validations: false
 
@@ -26,11 +27,11 @@ class User < ApplicationRecord
   end
 
   def ban
-    update(is_banned: true) if self.basic_role?
+    update(is_banned: true) if basic_role?
   end
 
   def unban
-    update(is_banned: false) if self.basic_role?
+    update(is_banned: false) if basic_role?
   end
 
   def author?(obj)

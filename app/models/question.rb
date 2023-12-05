@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :question_tags, dependent: :destroy
   has_many :tags, through: :question_tags
+  has_many :likes, as: :likeable, dependent: :destroy
 
   validates :title, presence: true, length: { minimum: 2 }
   validates :body, presence: true, length: { minimum: 2 }
