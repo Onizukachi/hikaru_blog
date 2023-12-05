@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(object, :like_count) do %>
+  <span class="ml-2 text-gray-500 text-lg"><%= object.likes.count > 0 ? object.likes.count : '' %></span>
+<% end %>
+
+<%= turbo_stream_from 'likes'%>

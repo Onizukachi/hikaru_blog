@@ -15,6 +15,13 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
   get 'up' => 'rails/health#show', as: :rails_health_check
 
+  concern :likeable do
+    member do
+      post 'like'
+      delete 'unlike'
+    end
+  end
+
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     resource :session, only: %i[new create destroy]
     resource :password_reset, only: %i[new create edit update]
@@ -23,11 +30,13 @@ Rails.application.routes.draw do
 
     resources :questions do
       resources :comments, only: %i[create destroy], module: :questions
-      resources :answers, except: %i[new show]
+      resources :answers, except: %i[new show], concerns: :likeable
+      concerns :likeable
     end
 
     resources :answers, only: [] do
-      resources :comments, only: %i[create destroy], module: :answers
+      resources :comments, only: %i[create destroy], module: :answers, concerns: :likeable
+      concerns :likeable
     end
 
     namespace :admin do

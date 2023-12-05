@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class AnswerPolicy < ApplicationPolicy
+  def like?
+    !user.guest? && !user.is_banned
+  end
+
+  def unlike?
+    like?
+  end
+
   def index?
     true
   end

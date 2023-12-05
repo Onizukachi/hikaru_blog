@@ -2,10 +2,31 @@
 
 class QuestionsController < ApplicationController
   include QuestionsAnswers
-  before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[show edit update destroy like unlike]
+  before_action :set_like, only: %i[like unlike]
   before_action :require_authentication, except: %i[index show]
   before_action :authorize_question!
   after_action :verify_authorized
+
+  def like
+    current_user.likes.create(likeable: @question) unless @like
+
+    respond_to do |format|
+      format.html { redirect_to questions_path }
+
+      format.turbo_stream
+    end
+  end
+
+  def unlike
+    @like&.destroy
+
+    respond_to do |format|
+      format.html { redirect_to questions_path }
+
+      format.turbo_stream
+    end
+  end
 
   def index
     @pagy, @questions = pagy(Question.all_by_tags(params), link_extra: 'data_turbo_frame="pagination_pagy"')
@@ -77,6 +98,10 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def set_like
+    @like = current_user.likes.find_by(likeable: @question)
   end
 
   def question_params

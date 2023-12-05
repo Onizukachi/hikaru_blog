@@ -30,11 +30,15 @@
         <% end %>
       </div>
     <% end %>
-    <div class="flex items-center mt-2 text-gray-500 text-xs">
-      <%= question.user.gravatar %>
-      <p class="italic font-extrabold ml-2">
-        Author: <span class='font-normal'><%= question.user.name_or_email %></span>
-      </p>
+    <div class="flex items-center justify-between mt-2 text-gray-500 text-xs">
+      <div class="flex items-center">
+        <%= question.user.gravatar %>
+        <p class="italic font-extrabold ml-2">
+          Author: <span class='font-normal'><%= question.user.name_or_email %></span>
+        </p>
+      </div>
+
+      <%= render partial: 'likes', locals: { question: } %>
     </div>
   </div>
 <% end %>
