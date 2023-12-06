@@ -15,7 +15,12 @@ class SessionsController < ApplicationController
       redirect_to questions_path
     else
       flash.now[:warning] = 'Incorrent e-mail or password!'
-      render :new, status: :unprocessable_entity
+
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+
+        format.turbo_stream
+      end
     end
   end
 

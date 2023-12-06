@@ -13,6 +13,7 @@
 
   <body>
   <%= yield :main_menu %>
+  <%= turbo_frame_tag 'modal' %>
 
     <main class="mt-28 flex flex-col justify-center items-center">
       <div id='flash' class="flash">

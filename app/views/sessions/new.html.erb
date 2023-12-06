@@ -1,35 +1,42 @@
-<%= provide :page_title, 'Log In'  %>
-<%= currently_at 'Log In' %>
+<%= turbo_frame_tag "modal" do %>
+  <div aria-labelledby="modal-title" data-controller='modal' data-action="keyup@window->modal#closeWithKeyboard click@window->modal#closeBackground"
+      data-modal-target="modalFullWindow" aria-modal="true" class="fixed inset-0 z-50 overflow-y-auto bg-black/80" role="dialog">
+    <div class="h-screen w-full relative flex items-center justify-center">
+      <div data-modal-target='modal' class="shadow-xl max-w-2xl bg-white m-1 p-8 prose prose-indigo origin-bottom mx-auto min-w-[600px] rounded-2xl animate-fade-in-up">
+        <%= turbo_frame_tag 'login_flash'%>
 
-<div class='mb-6 w-1/2'>
-  <h1 class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-8'>
-    Log in to your account
-  </h1>
+        <h1 id="modal-title" class="dark:text-slate-100">Log in to your account</h1>
 
-  <%= form_with url: session_path, data: { turbo: false } do |f| %>
-    <div class='mb-4'>
-      <%= f.label :email, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
-      <%= f.email_field :email, placeholder: 'E-mail', value: params[:email], class: 'form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
-    </div>
+        <%= form_with url: session_path, data: { turbo_frame: '_top' } do |f| %>
+          <div class='mb-4'>
+            <%= f.label :email, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+            <%= f.email_field :email, placeholder: 'E-mail', value: params[:email], class: 'form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+          </div>
 
-    <div class='mb-4'>
-      <%= f.label :password, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
-      <%= f.password_field :password, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
-    </div>
+          <div class='mb-4'>
+            <%= f.label :password, class: 'form-label block mb-2 text-sm font-medium text-gray-900' %>
+            <%= f.password_field :password, class: 'form-control block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500' %>
+          </div>
 
-    <div class="flex items-center justify-between">
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <%= f.check_box :remember_me, class: 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300' %>
-        </div>
-        <div class="ml-3 text-sm">
-          <%= f.label :remember_me, class: 'text-gray-500' %>
-        </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <%= f.check_box :remember_me, class: 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300' %>
+              </div>
+              <div class="ml-3 text-sm">
+                <%= f.label :remember_me, class: 'text-gray-500' %>
+              </div>
 
-        <%= link_to 'Forgot password?', new_password_reset_path, class: 'ml-8 text-sm font-medium text-blue-700 hover:underline' %>
+              <%= link_to 'Forgot password?', new_password_reset_path, data: { turbo_frame: '_top' }, class: 'ml-8 text-sm font-medium text-blue-700 hover:underline' %>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <%= f.submit 'Log In!', class: 'cursor-pointer mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
+            <%= link_to "Cancel", :back || root_path, class: 'cursor-pointer mt-6 text-slate-700 bg-slate-100 hover:bg-slate-200 focus:ring-4 focus:ring-slate-100 font-medium rounded-lg text-sm  no-underline w-full sm:w-auto px-5 py-3 text-center', data: { turbo: false } %>
+          </div>
+        <% end %>
       </div>
     </div>
-
-    <%= f.submit 'Log In!', class: 'cursor-pointer mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center' %>
-  <% end %>
-</div>
+  </div>
+<% end %>
