@@ -27,5 +27,11 @@
     </p>
   </div>
 
-  <%= render partial: 'questions/likes', locals: { question: } %>
+  <div class='flex items-center'>
+    <div class='mr-3'>
+      <%= render partial: 'likes', locals: { question: } %>
+    </div>
+    
+    <%= render partial: 'shared/views_count', locals: { vieweable: question } %>
+  </div>
 </div>

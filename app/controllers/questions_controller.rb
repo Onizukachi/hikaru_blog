@@ -2,6 +2,8 @@
 
 class QuestionsController < ApplicationController
   include QuestionsAnswers
+  include Vieweable
+
   before_action :set_question, only: %i[show edit update destroy like unlike]
   before_action :set_like, only: %i[like unlike]
   before_action :require_authentication, except: %i[index show]
@@ -35,6 +37,7 @@ class QuestionsController < ApplicationController
 
   def show
     load_questions_answers(do_render: false)
+    mark_view(@question)
   end
 
   def new

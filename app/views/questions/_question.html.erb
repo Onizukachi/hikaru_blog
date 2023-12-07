@@ -37,8 +37,13 @@
           Author: <span class='font-normal'><%= question.user.name_or_email %></span>
         </p>
       </div>
-
-      <%= render partial: 'likes', locals: { question: } %>
+      <div class='flex items-center'>
+        <div class='mr-3'>
+          <%= render partial: 'likes', locals: { question: } %>
+        </div>
+        
+        <%= render partial: 'shared/views_count', locals: { vieweable: question } %>
+      </div>
     </div>
   </div>
 <% end %>
