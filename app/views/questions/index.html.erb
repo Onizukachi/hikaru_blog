@@ -42,3 +42,6 @@
     <% end %>
   <% end %>
 </div>
+
+<%= turbo_stream_from 'views_count', channel: ViewChannel %>
+<%= turbo_stream_from 'comment_count', channel: CommentChannel %>

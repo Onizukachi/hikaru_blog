@@ -39,10 +39,14 @@
       </div>
       <div class='flex items-center'>
         <div class='mr-3'>
-          <%= render partial: 'likes', locals: { question: } %>
+          <%= render partial: 'shared/comments_count', locals: { commentable: question } %>
         </div>
-        
-        <%= render partial: 'shared/views_count', locals: { vieweable: question } %>
+
+        <div class='mr-3'>
+          <%= render partial: 'shared/views_count', locals: { vieweable: question } %>
+        </div>
+
+        <%= render partial: 'likes', locals: { question: } %>
       </div>
     </div>
   </div>

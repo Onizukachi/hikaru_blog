@@ -8,5 +8,3 @@
     <span class="ml-2 text-gray-500 text-lg"><%= number_to_human(vieweable.views_count) %></span>
   </div>
 <% end %>
-
-<%= turbo_stream_from dom_id(vieweable, 'views_count') %>

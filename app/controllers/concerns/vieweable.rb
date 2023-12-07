@@ -10,7 +10,8 @@ module Vieweable
       vieweable.increment!(:views_count)
 
       Turbo::StreamsChannel.broadcast_replace_to(
-        helpers.dom_id(vieweable, 'views_count'),
+        'views_count',
+        channel: ViewChannel,
         target: helpers.dom_id(vieweable, 'views_count'),
         partial: 'shared/views_count', locals: { vieweable: }
       )
