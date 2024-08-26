@@ -1,24 +1,40 @@
-# README
+# Hikaru Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting started
 
-Things you may want to cover:
+To get started with the app, first clone the repo and `cd` into the directory:
 
-* Ruby version
+```
+$ git clone https://github.com/Onizukachi/hikaru_blog.git
+$ cd hikaru_blog
+```
 
-* System dependencies
+Then install the needed gems (while skipping any gems needed only in production):
 
-* Configuration
+```
+$ bundle install --without production
+```
 
-* Database creation
+Install JavaScript dependencies:
 
-* Database initialization
+```
+$ yarn install
+```
 
-* How to run the test suite
+Next, migrate the database:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails db:migrate
+```
 
-* Deployment instructions
+Finally, run the test suite to verify that everything is working correctly:
 
-* ...
+```
+$ rspec
+```
+
+If the test suite passes, you'll be ready to run the app in a local server:
+
+```
+$ bin/dev
+```
